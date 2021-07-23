@@ -374,6 +374,9 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
 
         if (contadorVictoria === 81) {
             alert(`¡Ganaste!\n${document.getElementById("timer").innerHTML}`)
+            // pedir confirmacion para enviar tiempo con tiempoAux a una base de datos, 
+            // pedir nombre de usuario
+            // y mostrar mejores tiempos del server
             return false
         }
          
@@ -406,6 +409,7 @@ async function funcionTimer(fechaPrevia) {
                         ? ("0" + (tiempoSegundos - parseInt(60*tiempoMinutos)
                         ).toFixed(1)) : (tiempoSegundos - parseInt(60*tiempoMinutos)
                         ).toFixed(1)}`
+    document.getElementById("timerAux").innerHTML = tiempoSegundos
 }
 
 let flag = false

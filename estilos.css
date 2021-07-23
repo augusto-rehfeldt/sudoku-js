@@ -2,7 +2,9 @@ body {
     background-color: black;
 }
 
-
+h1 {
+    font-family: 'Kaushan Script', cursive;
+}
 
 .casilla, .casilla.par {
     padding: 0%;

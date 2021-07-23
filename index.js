@@ -359,27 +359,25 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
     }
 
     async function funcionCheckearVictoria(inputs) {
-        while (true) {
-            await new Promise(resolve => setTimeout(funcionCheckearVictoria(inputs), 50));
-            // ...do some async work... 
-            console.log("ok")
+        setTimeout(funcionCheckearVictoria(inputs), 50);
+        // ...do some async work... 
+        console.log("ok")
 
-            let contadorVictoria = 0
-        
-            for (let fila of inputs) {
-                for (let inp of fila) {
-                    if (!(inp.style.color === "red") && (1 <= inp.value && inp.value <= 9)) {
-                        contadorVictoria += 1
-                    }
+        let contadorVictoria = 0
+    
+        for (let fila of inputs) {
+            for (let inp of fila) {
+                if (!(inp.style.color === "red") && (1 <= inp.value && inp.value <= 9)) {
+                    contadorVictoria += 1
                 }
             }
-        
-            console.log(contadorVictoria)
-        
-            if (contadorVictoria === 81) {
-                alert("Ganaste")
-            } 
         }
+    
+        console.log(contadorVictoria)
+    
+        if (contadorVictoria === 81) {
+            alert("Ganaste")
+        } 
     }
         
     funcionCheckearVictoria(inputs)

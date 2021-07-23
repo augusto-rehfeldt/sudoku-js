@@ -370,10 +370,9 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
             }
         }
 
-        console.log(contadorVictoria)
-
         if (contadorVictoria === 81) {
             alert(`¡Ganaste!\n${document.getElementById("timer").innerHTML}`)
+            tiempoSegundos = document.getElementById("timerAux").innerHTML
             // pedir confirmacion para enviar tiempo con tiempoAux a una base de datos, 
             // pedir nombre de usuario
             // y mostrar mejores tiempos del server

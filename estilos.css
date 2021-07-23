@@ -2,10 +2,6 @@ body {
     background-color: black;
 }
 
-h1 {
-    color: white;
-}
-
 .casilla, .casilla.par {
     padding: 0%;
     border: none;
@@ -25,6 +21,10 @@ h1 {
 #timer {
     opacity: 0;
     transition: 0.3s ease-in;
+}
+
+#footer-timer {
+    min-height: 100px;
 }
 
 @media screen and (min-width: 576px) {

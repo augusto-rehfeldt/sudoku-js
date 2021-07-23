@@ -366,8 +366,6 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
         }
     }
 
-    document.getElementById("timer").style.color = "white"
-
 }
 
 window.onLoad = generarTablero("tablero", nuevoTablero(), 60)

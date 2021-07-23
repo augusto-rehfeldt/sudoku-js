@@ -359,7 +359,7 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
     }
 
     async function funcionCheckearVictoria(inputs) {
-        setTimeout(funcionCheckearVictoria(inputs), 50);
+        //setTimeout(funcionCheckearVictoria(inputs), 50);
         // ...do some async work... 
         console.log("ok")
 
@@ -372,7 +372,6 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
                 }
             }
         }
-    
         console.log(contadorVictoria)
     
         if (contadorVictoria === 81) {

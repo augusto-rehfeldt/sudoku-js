@@ -1,0 +1,60 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    color: white;
+}
+
+.casilla, .casilla.par {
+    padding: 0%;
+    border: none;
+    outline: 1px solid black;
+    text-align: center;
+    transition: 0.1s ease-in;
+}
+
+.casilla.par {
+    background-color: rgb(241, 241, 241);
+}
+
+.casilla:disabled, .casilla.par:disabled {
+    background-color: lightgrey;
+}
+
+#timer {
+    opacity: 0;
+    transition: 0.3s ease-in;
+}
+
+@media screen and (min-width: 576px) {
+    .casilla, .casilla.par {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    .casilla, .casilla.par {
+        width: 35px;
+        height: 35px;
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+    .casilla, .casilla.par {
+        width: 30px;
+        height: 30px;
+    }
+
+}
+
+@media screen and (max-width: 300px) {
+    .casilla, .casilla.par {
+        width: 25px;
+        height: 25px;
+    }
+
+}

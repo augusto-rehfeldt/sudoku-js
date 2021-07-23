@@ -359,10 +359,6 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
     }
 
     async function funcionCheckearVictoria(inputs) {
-        setTimeout(() => {
-            funcionCheckearVictoria(inputs);
-          }, 50);
-
         let contadorVictoria = 0
     
         for (let fila of inputs) {
@@ -376,7 +372,12 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
     
         if (contadorVictoria === 81) {
             alert("Ganaste")
+            return false
         } 
+
+        setTimeout(() => {
+            funcionCheckearVictoria(inputs);
+          }, 100);
     }
         
     funcionCheckearVictoria(inputs)

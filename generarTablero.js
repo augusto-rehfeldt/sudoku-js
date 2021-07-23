@@ -170,7 +170,7 @@ export function nuevoTablero() {
     }
 }
 
-function sumarValores(arr) {
+/* function sumarValores(arr) {
     var suma = 0
     for (let valor of arr) {
         suma += valor
@@ -178,7 +178,7 @@ function sumarValores(arr) {
     return suma
 }
 
-/* var tiempos = []
+var tiempos = []
 
 start = +new Date();
 

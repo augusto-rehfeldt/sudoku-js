@@ -360,7 +360,7 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
 
     async function funcionCheckearVictoria(inputs) {
         while (true) {
-            await new Promise(resolve => setTimeout(uncionCheckearVictoria(inputs), 50));
+            await new Promise(resolve => setTimeout(funcionCheckearVictoria(inputs), 50));
             // ...do some async work... 
             console.log("ok")
 

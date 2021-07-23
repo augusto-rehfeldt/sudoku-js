@@ -2,6 +2,8 @@ body {
     background-color: black;
 }
 
+
+
 .casilla, .casilla.par {
     padding: 0%;
     border: none;
@@ -28,6 +30,9 @@ body {
 }
 
 @media screen and (min-width: 576px) {
+    .tablero {
+        min-height: 500px;
+    }
     .casilla, .casilla.par {
         width: 50px;
         height: 50px;
@@ -36,6 +41,9 @@ body {
 }
 
 @media screen and (max-width: 576px) {
+    .tablero {
+        min-height: 400px;
+    }
     .casilla, .casilla.par {
         width: 35px;
         height: 35px;
@@ -44,6 +52,9 @@ body {
 }
 
 @media screen and (max-width: 350px) {
+    .tablero {
+        min-height: 300px;
+    }
     .casilla, .casilla.par {
         width: 30px;
         height: 30px;

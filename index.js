@@ -360,32 +360,34 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
 
     async function funcionCheckearVictoria(inputs, tablero_resuelto) {
         let contadorVictoria = 0
-        
+
+
         for (let fila of inputs) {
             for (let inp of fila) {
-                if (inp.value === tablero_resuelto[inputs.indexOf(fila)][fila.indexOf(inp)]) {
+                if (inp.value == tablero_resuelto[inputs.indexOf(fila)][fila.indexOf(inp)]) {
                     contadorVictoria += 1
                 }
             }
         }
+
         console.log(contadorVictoria)
 
         if (contadorVictoria === 81) {
-            alert("Ganaste")
+            alert(`¡Ganaste!\n${document.getElementById("timer").innerHTML}`)
             return false
         }
          
 
-        setTimeout(() => {
+         setTimeout(() => {
             funcionCheckearVictoria(inputs, tablero_resuelto);
-          }, 100);
+          }, 500); 
     }
         
     funcionCheckearVictoria(inputs, tablero_resuelto)
 
 }
 
-window.onLoad = generarTablero("tablero", nuevoTablero(), 1)
+window.onLoad = generarTablero("tablero", nuevoTablero(), 60)
 
 
 async function funcionTimer(fechaPrevia) {

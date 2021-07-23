@@ -290,14 +290,6 @@ function checkearTablero(inputOriginal, x, y, inputs) {
     inputOriginal.style.color = "black"
 }
 
-function asignarColor(casilla, valor, fila, tablero_resuelto) {
-    if ((0 <= fila.indexOf(valor) <= 2) && (0 <= tablero_resuelto.indexOf(fila) <= 2)) {
-        casilla.className = "casilla par"
-    } else {
-        casilla.className = "casilla"
-    }
-}
-
 function generarTablero(htmlId, tablero_resuelto, dificultad) {
     var inputs = []
 
@@ -366,9 +358,36 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
         }
     }
 
+    async function funcionCheckearVictoria(inputs) {
+        while (true) {
+            await new Promise(resolve => setTimeout(uncionCheckearVictoria(inputs), 50));
+            // ...do some async work... 
+            console.log("ok")
+
+            let contadorVictoria = 0
+        
+            for (let fila of inputs) {
+                for (let inp of fila) {
+                    if (!(inp.style.color === "red") && (1 <= inp.value && inp.value <= 9)) {
+                        contadorVictoria += 1
+                    }
+                }
+            }
+        
+            console.log(contadorVictoria)
+        
+            if (contadorVictoria === 81) {
+                alert("Ganaste")
+            } 
+        }
+    }
+        
+    funcionCheckearVictoria(inputs)
+
 }
 
 window.onLoad = generarTablero("tablero", nuevoTablero(), 60)
+
 
 async function funcionTimer(fechaPrevia) {
     setTimeout(() => {

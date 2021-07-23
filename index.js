@@ -358,39 +358,30 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
         }
     }
 
-    async function funcionCheckearVictoria(inputs) {
+    async function funcionCheckearVictoria(inputs, tablero_resuelto) {
         let contadorVictoria = 0
-    
+        
         for (let fila of inputs) {
             for (let inp of fila) {
-                if (!(inp.style.color === "red") && (1 <= inp.value && inp.value <= 9)) {
+                if (inp.value === tablero_resuelto[inputs.indexOf(fila)][fila.indexOf(inp)]) {
                     contadorVictoria += 1
                 }
             }
         }
         console.log(contadorVictoria)
-        
-        let flag = true
 
         if (contadorVictoria === 81) {
-            for (let fila of inputs) {
-                for (let inp of fila) {
-                    if (!(inp.style.color === "red") && (1 <= inp.value && inp.value <= 9)) {
-                        flag = false
-                    }
-                }
-            }
-            if (flag) {
-                alert("Ganaste")
-            }
-        } 
+            alert("Ganaste")
+            return false
+        }
+         
 
         setTimeout(() => {
-            funcionCheckearVictoria(inputs);
+            funcionCheckearVictoria(inputs, tablero_resuelto);
           }, 100);
     }
         
-    funcionCheckearVictoria(inputs)
+    funcionCheckearVictoria(inputs, tablero_resuelto)
 
 }
 

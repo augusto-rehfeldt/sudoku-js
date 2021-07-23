@@ -369,10 +369,20 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
             }
         }
         console.log(contadorVictoria)
-    
+        
+        let flag = true
+
         if (contadorVictoria === 81) {
-            alert("Ganaste")
-            return false
+            for (let fila of inputs) {
+                for (let inp of fila) {
+                    if (!(inp.style.color === "red") && (1 <= inp.value && inp.value <= 9)) {
+                        flag = false
+                    }
+                }
+            }
+            if (flag) {
+                alert("Ganaste")
+            }
         } 
 
         setTimeout(() => {

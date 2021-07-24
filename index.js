@@ -1,24 +1,53 @@
 import { nuevoTablero } from "./generarTablero.js"
 
-Array.range = function(a, b, step){
-    var A = [];
-    if(typeof a == 'number'){
-        A[0] = a;
-        step = step || 1;
-        while(a+step <= b){
-            A[A.length]= a+= step;
-        }
+var range = function(start, end, step) {
+    var range = [];
+    var typeofStart = typeof start;
+    var typeofEnd = typeof end;
+
+    if (step === 0) {
+        throw TypeError("Step cannot be zero.");
     }
-    else {
-        var s = 'abcdefghijklmnñopqrstuvwxyz';
-        if(a === a.toUpperCase()){
-            b = b.toUpperCase();
-            s = s.toUpperCase();
-        }
-        s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
-        A = s.split('');        
+
+    if (typeofStart == "undefined" || typeofEnd == "undefined") {
+        throw TypeError("Must pass start and end arguments.");
+    } else if (typeofStart != typeofEnd) {
+        throw TypeError("Start and end arguments must be of same type.");
     }
-    return A;
+
+    typeof step == "undefined" && (step = 1);
+
+    if (end < start) {
+        step = -step;
+    }
+
+    if (typeofStart == "number") {
+
+        while (step > 0 ? end >= start : end <= start) {
+            range.push(start);
+            start += step;
+        }
+
+    } else if (typeofStart == "string") {
+
+        if (start.length != 1 || end.length != 1) {
+            throw TypeError("Only strings with one character are supported.");
+        }
+
+        start = start.charCodeAt(0);
+        end = end.charCodeAt(0);
+
+        while (step > 0 ? end >= start : end <= start) {
+            range.push(String.fromCharCode(start));
+            start += step;
+        }
+
+    } else {
+        throw TypeError("Only string and number types are supported");
+    }
+
+    return range;
+
 }
 
 const arrayWithoutElementAtIndex = function (arr, index) {
@@ -267,7 +296,7 @@ function checkearTablero(inputOriginal, x, y, inputs) {
         inputOriginal.style.color = "black"
     }
     // columnas
-    for (let j of Array.range(0, 8)) {
+    for (let j of range(0, 8)) {
         if (j === x) {
             continue
         } else {
@@ -289,6 +318,195 @@ function checkearTablero(inputOriginal, x, y, inputs) {
     } 
     inputOriginal.style.color = "black"
 }
+
+
+function movimiento(direccion, valor_x, valor_y, inputs) {
+    console.log(direccion, valor_x, valor_y)
+    if (direccion === "arriba") {
+        console.log("arriba")
+        if (valor_x == 0) {
+            console.log("1")
+            for (let i of range(8, 0, 1)) {
+                for (let fila of inputs) {
+                    for (let inp of fila) {
+                        if ((fila.indexOf(inp) == valor_y) && (inputs.indexOf(fila) == i)) {
+                            if (!(inp.disabled === true)) {
+                                console.log("caso 1", valor_x, valor_y)
+                                inp.focus()
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (valor_x >= 1) {
+            for (let i of range(valor_x-1, -1, 1)) {
+                for (let fila of inputs) {
+                    for (let inp of fila) {
+                        if ((fila.indexOf(inp) == valor_y) && (inputs.indexOf(fila) == i)) {
+                            if (!(inp.disabled === true)) {
+                                console.log("caso 2", valor_x, valor_y)
+                                inp.focus()
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+            for (let k of range(8, -1, 1)) {
+                if (k != valor_x) {
+                    for (let fila of inputs) {
+                        for (let inp of fila) {
+                            if ((fila.indexOf(inp) == valor_y) && (inputs.indexOf(fila) == k)) {
+                                if (!(inp.disabled === true)) {
+                                    console.log("caso 3", valor_x, valor_y)
+                                    inp.focus()
+                                    return false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } else if (direccion === "abajo") {
+        if (valor_x < 8) {
+            for (let i of range(valor_x+1, 8)) {
+                for (let fila of inputs) {
+                    for (let inp of fila) {
+                        if ((fila.indexOf(inp) == valor_y) && (inputs.indexOf(fila) == i)) {
+                            if (!(inp.disabled === true)) {
+                                console.log(valor_x, valor_y)
+                                inp.focus()
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+            for (let k of range(0, 8)) {
+                if (k != valor_x) {
+                    for (let fila of inputs) {
+                        for (let inp of fila) {
+                            if ((fila.indexOf(inp) == valor_y) && (inputs.indexOf(fila) == k)) {
+                                if (!(inp.disabled === true)) {
+                                    console.log(valor_x, valor_y)
+                                    inp.focus()
+                                    return false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (valor_x == 8) {
+            for (let i of range(0, 8)) {
+                for (let fila of inputs) {
+                    for (let inp of fila) {
+                        if ((fila.indexOf(inp) == valor_y) && (inputs.indexOf(fila) == i)) {
+                            if (!(inp.disabled === true)) {
+                                console.log(valor_x, valor_y)
+                                inp.focus()
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } else if (direccion === "derecha") {
+        if (valor_y < 8) {
+            for (let i of range(valor_y+1, 8)) {
+                for (let fila of inputs) {
+                    for (let inp of fila) {
+                        if ((fila.indexOf(inp) == i) && (inputs.indexOf(fila) == valor_x)) {
+                            if (!(inp.disabled === true)) {
+                                console.log(valor_x, valor_y)
+                                inp.focus()
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+            for (let k of range(0, 8)) {
+                if (k != valor_x) {
+                    for (let fila of inputs) {
+                        for (let inp of fila) {
+                            if ((fila.indexOf(inp) == k) && (inputs.indexOf(fila) == valor_x)) {
+                                if (!(inp.disabled === true)) {
+                                    console.log(valor_x, valor_y)
+                                    inp.focus()
+                                    return false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (valor_y == 8) {
+            for (let i of range(0, 8)) {
+                for (let fila of inputs) {
+                    for (let inp of fila) {
+                        if ((fila.indexOf(inp) == i) && (inputs.indexOf(fila) == valor_x)) {
+                            if (!(inp.disabled === true)) {
+                                console.log(valor_x, valor_y)
+                                inp.focus()
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } else if (direccion === "izquierda") {
+        if (valor_y == 0) {
+            for (let i of range(8, 1, 1)) {
+                for (let fila of inputs) {
+                    for (let inp of fila) {
+                        if ((fila.indexOf(inp) == i) && (inputs.indexOf(fila) == valor_x)) {
+                            if (!(inp.disabled === true)) {
+                                console.log(valor_x, valor_y)
+                                inp.focus()
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (valor_y >= 1) {
+            for (let i of range(valor_y-1, 0, 1)) {
+                for (let fila of inputs) {
+                    for (let inp of fila) {
+                        if ((fila.indexOf(inp) == i) && (inputs.indexOf(fila) == valor_x)) {
+                            if (!(inp.disabled === true)) {
+                                console.log(valor_x, valor_y)
+                                inp.focus()
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+            for (let k of range(8, 0, 1)) {
+                if (k != valor_y) {
+                    for (let fila of inputs) {
+                        for (let inp of fila) {
+                            if ((fila.indexOf(inp) == k) && (inputs.indexOf(fila) == valor_x)) {
+                                if (!(inp.disabled === true)) {
+                                    console.log(valor_x, valor_y)
+                                    inp.focus()
+                                    return false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 function generarTablero(htmlId, tablero_resuelto, dificultad) {
     var inputs = []
@@ -339,13 +557,26 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
     var casillas_utilizadas = []
 
     while (contador <= dificultad) {
-        var x = Array.range(0, 8)[Math.floor(Math.random()*Array.range(0, 8).length)]
-        var y = Array.range(0, 8)[Math.floor(Math.random()*Array.range(0, 8).length)]
+        let x = range(0, 8)[Math.floor(Math.random()*range(0, 8).length)]
+        let y = range(0, 8)[Math.floor(Math.random()*range(0, 8).length)]
         if (casillas_utilizadas.includes(inputs[x][y])) {
             continue
         }
         inputs[x][y].disabled = false
         inputs[x][y].value = ""
+        inputs[x][y].addEventListener('keydown', function (e) {
+            e = e || window.event;
+            switch (e.key || e.code) {
+                case "ArrowUp": movimiento("arriba", x, y, inputs)
+                    break;
+                case "ArrowDown": movimiento("abajo", x, y, inputs)
+                    break;
+                case "ArrowLeft": movimiento("izquierda", x, y, inputs)
+                    break;
+                case "ArrowRight": movimiento("derecha", x, y, inputs);
+                    break;
+            }
+        })
         casillas_utilizadas.push(inputs[x][y])
         contador += 1
     }

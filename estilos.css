@@ -22,6 +22,41 @@ h1 {
     background-color: lightgrey;
 }
 
+.accordion-item {
+    background-color: black;
+}
+
+.accordion-button {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.accordion-button:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.accordion-button::after {
+    margin: 5%;
+    filter: invert(30%);
+}
+
+.accordion-button:not(.collapsed)::after {
+    margin: 5%;
+    filter: grayscale(100%);
+}
+
+.accordion-body {
+    color: whitesmoke;
+    background-color: black;
+    border: none;
+}
+
 #timer {
     opacity: 0;
     transition: 0.3s ease-in;

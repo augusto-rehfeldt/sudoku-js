@@ -1,28 +1,57 @@
-Array.range = function(a, b, step){
-    var A = [];
-    if(typeof a == 'number'){
-        A[0] = a;
-        step = step || 1;
-        while(a+step <= b){
-            A[A.length]= a+= step;
-        }
+var range = function(start, end, step) {
+    var range = [];
+    var typeofStart = typeof start;
+    var typeofEnd = typeof end;
+
+    if (step === 0) {
+        throw TypeError("Step cannot be zero.");
     }
-    else {
-        var s = 'abcdefghijklmnñopqrstuvwxyz';
-        if(a === a.toUpperCase()){
-            b = b.toUpperCase();
-            s = s.toUpperCase();
-        }
-        s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
-        A = s.split('');        
+
+    if (typeofStart == "undefined" || typeofEnd == "undefined") {
+        throw TypeError("Must pass start and end arguments.");
+    } else if (typeofStart != typeofEnd) {
+        throw TypeError("Start and end arguments must be of same type.");
     }
-    return A;
+
+    typeof step == "undefined" && (step = 1);
+
+    if (end < start) {
+        step = -step;
+    }
+
+    if (typeofStart == "number") {
+
+        while (step > 0 ? end >= start : end <= start) {
+            range.push(start);
+            start += step;
+        }
+
+    } else if (typeofStart == "string") {
+
+        if (start.length != 1 || end.length != 1) {
+            throw TypeError("Only strings with one character are supported.");
+        }
+
+        start = start.charCodeAt(0);
+        end = end.charCodeAt(0);
+
+        while (step > 0 ? end >= start : end <= start) {
+            range.push(String.fromCharCode(start));
+            start += step;
+        }
+
+    } else {
+        throw TypeError("Only string and number types are supported");
+    }
+
+    return range;
+
 }
 
 function crearTablero() {
     var tablero = []
 
-    for (let i of Array.range(0, 8)) {
+    for (let i of range(0, 8)) {
         tablero.push([0, 0, 0, 0, 0, 0, 0, 0, 0])
     }
 
@@ -116,9 +145,9 @@ function enCuadrilatero(numero, i, k, tablero) {
 }
 
 function rellenarTablero(tablero) {
-    for (let i of Array.range(0, 8)) {
-        for (let k of Array.range(0, 8)) {
-            var numeros_a_utilizar = Array.range(1, 9)
+    for (let i of range(0, 8)) {
+        for (let k of range(0, 8)) {
+            var numeros_a_utilizar = range(1, 9)
             while (true) {
                 if (numeros_a_utilizar.length === 0) {
                     return false
@@ -132,7 +161,7 @@ function rellenarTablero(tablero) {
                     continue
                 } else {
                     var flag = false
-                    for (let j of Array.range(0, 8)) {
+                    for (let j of range(0, 8)) {
                         if (numero === tablero[j][k]) {
                             var index = numeros_a_utilizar.indexOf(numero)
                             numeros_a_utilizar.splice(index, 1)
@@ -182,7 +211,7 @@ var tiempos = []
 
 start = +new Date();
 
-for (let i of Array.range(1, 1000)) {
+for (let i of range(1, 1000)) {
     start2 = +new Date();
     nuevoTablero()
     console.log(i)

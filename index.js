@@ -620,7 +620,7 @@ function generarTablero(htmlId, tablero_resuelto, dificultad) {
 
 }
 
-window.onLoad = generarTablero("tablero", nuevoTablero(), 60)
+window.onLoad = generarTablero("tablero", nuevoTablero(), 55)
 
 
 async function funcionTimer(fechaPrevia) {

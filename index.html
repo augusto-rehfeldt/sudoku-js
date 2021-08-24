@@ -1,68 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilos.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap"
+      rel="stylesheet"
+    />
     <title>Sudoku</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1 class="text-center text-light py-3">Sudoku</h1>
-        </header>
-        <main>
-            <section class="row d-flex justify-content-center">
-                <div class="col-md-2 col-lg-3 justify-content-center">
-
+      <header>
+        <h1 class="text-center text-light py-3">Sudoku</h1>
+      </header>
+      <main>
+        <section class="row d-flex justify-content-center">
+          <div class="col-md-2 col-lg-3 justify-content-center"></div>
+          <div class="col-12 col-md-8 col-lg-6 d-flex justify-content-center">
+            <div class="tablero" id="tablero"></div>
+          </div>
+          <div class="col-md-2 col-lg-3 d-flex justify-content-start">
+            <div
+              class="accordion accordion-flush w-100"
+              id="accordionFlushExample"
+            >
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button
+                    class="accordion-button pt-0 collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseOne"
+                  >
+                    Instrucciones
+                  </button>
+                </h2>
+                <div
+                  id="flush-collapseOne"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="flush-headingOne"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      El objetivo del Sudoku es llenar todos los casilleros del
+                      tablero con números del 1 al 9 de manera tal que ese
+                      número no se repita en la misma cuadrícula 3x3, fila o
+                      columna.
+                    </p>
+                    <p>
+                      Dicho de otra forma, cada cuadrícula, fila y columna debe
+                      contener los números del 1 al 9 sin repetir.
+                    </p>
+                    <p>
+                      Podés moverte por las casillas usando el mouse o las
+                      flechas de tu teclado (<kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd
+                      ><kbd>←</kbd>).
+                    </p>
+                    <p>
+                      Una vez ingreses tu primer número, empezará a correr el
+                      tiempo.
+                    </p>
+                  </div>
                 </div>
-                <div class="col-12 col-md-8 col-lg-6 d-flex justify-content-center">
-                    <div class="tablero" id="tablero">
-
-                    </div>
-                </div>
-                <div class="col-md-2 col-lg-3 d-flex justify-content-start">
-                    <div class="accordion accordion-flush w-100" id="accordionFlushExample">
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button pt-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                              Instrucciones
-                            </button>
-                          </h2>
-                          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <p>El objetivo del Sudoku es llenar todos los casilleros del tablero con números del 1 al 9 de manera tal que ese número no se repita en la misma cuadrícula 3x3, fila o columna.</p>
-                                <p>Dicho de otra forma, cada cuadrícula, fila y columna debe contener los números del 1 al 9 sin repetir.</p>
-                                <p>Podés moverte por las casillas usando el mouse o las flechas de tu teclado.</p>
-                                <p>Una vez ingreses tu primer número, empezará a correr el tiempo.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </section>
-            <section>
-                <div class="d-flex justify-content-center text-light py-3" id="footer-timer">
-                    <h2 id="timer">
-
-                    </h2>
-                    <p class="d-none" id="timerAux"></p>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <div class="d-flex justify-content-center text-light py-3">
-                <p>Hecho por <a class="text-decoration-none" href="https://www.linkedin.com/in/augusto-rehfeldt-9aa01320a/">Augusto Rehfeldt</a></p>
+              </div>
             </div>
-        </footer>
+          </div>
+        </section>
+        <section>
+          <div
+            class="d-flex justify-content-center text-light py-3"
+            id="footer-timer"
+          >
+            <h2 id="timer"></h2>
+            <p class="d-none" id="timerAux"></p>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <div class="d-flex justify-content-center text-light py-3">
+          <p>
+            Hecho por
+            <a
+              class="text-decoration-none"
+              href="https://www.linkedin.com/in/augusto-rehfeldt-9aa01320a/"
+              >Augusto Rehfeldt</a
+            >
+          </p>
+        </div>
+      </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <script type="module" src="/index.js"></script>
-</body>
+  </body>
 </html>
